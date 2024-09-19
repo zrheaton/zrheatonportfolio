@@ -1,0 +1,1 @@
+Welcome to my portfolio. I spend a lot of time working on personal projects outside of my professional career in Cybersecurity-Related Operations & AI. These are some of the things that are worth showcasing. You can also find my resume if interested. 
