@@ -1,0 +1,10 @@
+from(bucket: "WaterSensorBucket")
+  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)
+  |> filter(fn: (r) => r["_field"] == "temp_fahrenheit")
+  |> filter(fn: (r) => r["sensor"] == "28-3ce1d443105c" or r["sensor"] == "28-3ce1d4437d35" or r["sensor"] == "28-3ce1d4431624")
+  |> map(fn: (r) => ({
+        r with
+        sensor_name: if r["sensor"] == "28-3ce1d443105c" then "Sensor A" else if r["sensor"] == "28-3ce1d4437d35" then "Sensor B" else "Sensor C"
+  }))
+  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)
+  |> yield(name: "mean")
